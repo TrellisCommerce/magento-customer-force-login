@@ -1,0 +1,25 @@
+{
+  "name": "trellis/customer-force-login",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "trellis/core": "*"
+  }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+  "license": [
+    ""
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Trellis\\CustomerForceLogin\\": ""
+    }
+  }
+}
