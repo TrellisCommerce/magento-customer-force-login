@@ -1,5 +1,6 @@
 {
-  "name": "trellis/customer-force-login",
+  "name": "trellis/module-customer-force-login",
+  "description": "Force the customer to login before use the site",
   "version": "1.0.0",
   "description": "N/A",
   "type": "magento2-module",
