@@ -4,15 +4,8 @@
   "version": "1.0.0",
   "type": "magento2-module",
   "require": {
-    "magento/framework": "^102",
-    "trellis/module-core": "*"
+    "php": "~7.3.0||~7.4.0"
   },
-  "require-dev": {
-      "roave/security-advisories": "dev-master"
-  },
-  "license": [
-    ""
-  ],
   "autoload": {
     "files": [
       "registration.php"

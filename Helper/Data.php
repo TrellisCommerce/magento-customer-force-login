@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Trellis\CustomerForceLogin\Helper;
 
 use Magento\Cms\Model\PageFactory;
@@ -20,7 +22,7 @@ class Data extends AbstractHelper
     protected $cmsPageFactory;
 
     /**
-     * @param Context $context
+     * @param Context     $context
      * @param PageFactory $pageFactory
      */
     public function __construct(Context $context, PageFactory $pageFactory)
@@ -33,6 +35,7 @@ class Data extends AbstractHelper
      * Check if force login is enabled
      *
      * @param null $storeId
+     *
      * @return mixed
      */
     public function getIsForceLoginEnabled($storeId = null)
@@ -48,6 +51,7 @@ class Data extends AbstractHelper
      * Get allowed action names
      *
      * @param null $storeId
+     *
      * @return array
      */
     public function getAllowedActionNames($storeId = null): array
@@ -68,6 +72,7 @@ class Data extends AbstractHelper
      * Get allowed cms pages from config
      *
      * @param null $storeId
+     *
      * @return array
      */
     public function getAllowedCmsPageIdentifiers($storeId = null): array
@@ -86,7 +91,9 @@ class Data extends AbstractHelper
 
     /**
      * Get a list of extra full action names
+     *
      * @param $actionName
+     *
      * @return bool
      */
     public function actionNameIsAllowed($actionName): bool
@@ -95,6 +102,7 @@ class Data extends AbstractHelper
         if (!$allowedNames) {
             return false;
         }
+
         return in_array($actionName, $allowedNames);
     }
 
@@ -102,6 +110,7 @@ class Data extends AbstractHelper
      * Check if a cms page's access is blocked
      *
      * @param $pageId
+     *
      * @return bool
      */
     public function isValidCmsPage($pageId): bool

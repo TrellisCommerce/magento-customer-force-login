@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Trellis\CustomerForceLogin\Observer;
 
 use Magento\Customer\Model\Session;
@@ -7,6 +9,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Trellis\CustomerForceLogin\Helper\Data;
@@ -34,9 +37,9 @@ class ForceLogin implements ObserverInterface
     protected $storeManager;
 
     /**
-     * @param Session $customerSession
-     * @param RedirectInterface $redirect
-     * @param Data $loginHelper
+     * @param Session               $customerSession
+     * @param RedirectInterface     $redirect
+     * @param Data                  $loginHelper
      * @param StoreManagerInterface $storeManager
      */
     public function __construct(
@@ -55,6 +58,7 @@ class ForceLogin implements ObserverInterface
      * Redirect customers to login page if not already logged in
      *
      * @param Observer $observer
+     *
      * @return void
      */
     public function execute(Observer $observer)
@@ -80,6 +84,7 @@ class ForceLogin implements ObserverInterface
 
     /**
      * @param RequestInterface $request
+     *
      * @return bool
      */
     public function isAllowedCmsPage(RequestInterface $request): bool
@@ -100,6 +105,7 @@ class ForceLogin implements ObserverInterface
 
     /**
      * @param RequestInterface $request
+     *
      * @return bool
      */
     private function isAllowedAction(RequestInterface $request): bool
@@ -108,14 +114,14 @@ class ForceLogin implements ObserverInterface
         $controller = $request->getControllerName();
         $moduleName = $request->getModuleName();
 
-        return $controller === 'directpost_payment' ||
-            in_array($moduleName, ['authorizenet', 'customer']) ||
-            $this->loginHelper->actionNameIsAllowed($fullActionName);
+        return $controller === 'directpost_payment' || in_array($moduleName, ['authorizenet', 'customer']
+            ) || $this->loginHelper->actionNameIsAllowed($fullActionName);
     }
 
     /**
      * Get store secure base url
      * @return mixed
+     * @throws NoSuchEntityException
      */
     public function getBaseUrl()
     {
@@ -123,6 +129,7 @@ class ForceLogin implements ObserverInterface
         if ($this->loginHelper->storeCodeInUrl()) {
             $baseUrl .= $this->storeManager->getStore()->getCode() . '/';
         }
+
         return $baseUrl;
     }
 
