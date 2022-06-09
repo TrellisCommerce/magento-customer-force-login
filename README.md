@@ -9,7 +9,6 @@ access a restricted page without logging-in will be redirected to the login page
 ## Installation
 Follow the instructions below to install this extension using Composer.
 ```bash
-composer config repositories.trellis/module-customer-force-login git git@github.com:TrellisCommerce/magento-customer-force-login
 composer require trellis/module-customer-force-login
 bin/magento module:enable --clear-static-content Trellis_CustomerForceLogin
 bin/magento setup:upgrade
